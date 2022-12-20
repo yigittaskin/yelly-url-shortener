@@ -182,5 +182,22 @@ router.post('/dashboard/:id?', (req, res) => {
     });
 })
 
+router.post('/edit', checkAuth, function (req, res, next) {
+    bcryptjs.genSalt(12, (err, salt) => {
+        if (err) throw err;
+        bcryptjs.hash(req.body.password, salt, (err, hash) => {
+            user.findByIdAndUpdate(req.user.id, { email: req.body.email, password: hash },
+                function (err, docs) {
+                    if (err) {
+                        console.log(err)
+                    }
+                    else {
+                        res.redirect('/dashboard');
+                    }
+                });
+        });
+    });
+});
+
 
 module.exports = router;

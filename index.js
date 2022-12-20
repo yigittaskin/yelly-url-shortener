@@ -26,7 +26,6 @@ app.use(expressSession({
     secret: "random",
     resave: true,
     saveUninitialized: true,
-    // setting the max age to longer duration
     maxAge: 24 * 60 * 60 * 1000,
     store: new MemoryStore(),
 }));
