@@ -1,0 +1,1 @@
+module.exports = "mongodb+srv://yigit:yigit@cluster0.qhdrl9e.mongodb.net/yelly";

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <!-- Font  -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Recursive:wght@500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./styles/login.css">
+  <title>Yelly Login</title>
+  <link rel="icon" type="image/x-icon" href="/static/images/logo.png">
+</head>
+
+<body>
+  <div class="container">
+    <div style="margin: 0 auto">
+      <% if( error !="" ){ %>
+        <div style="background-color: red; color: white; padding: 10px; border-radius: 10px; margin-bottom: 10px;">
+          <strong> Error! </strong>
+          <%= error %>
+            <button type="button" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        <% } %>
+
+          <!-- if someone tried to access a protected route  -->
+          <!-- this flash message will show them to login first  -->
+
+          <% if( error_messages !="" ){ %>
+            <div style="background-color: red; color: white; padding: 10px; border-radius: 10px; margin-bottom: 10px;">
+              <strong> Error </strong>
+              <%= error_messages %>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            <% } %>
+
+              <div class="wrapper">
+                <div class="title-text">
+                  <div class="title login">Login Form</div>
+                  <div class="title signup">Signup Form</div>
+                </div>
+                <div class="form-container">
+                  <div class="slide-controls">
+                    <input type="radio" name="slide" id="login" checked>
+                    <input type="radio" name="slide" id="signup">
+                    <label for="login" class="slide login">Login</label>
+                    <label for="signup" class="slide signup"><a href="/signup">Signup</a></label>
+                    <div class="slider-tab"></div>
+                  </div>
+                  <div class="form-inner">
+                    <form action="/login" class="login" method="POST">
+                      <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+                      <div class="field">
+                        <input type="email" name="email" id="username" autocomplete="off" placeholder="Email Adress"
+                          required />
+                      </div>
+                      <div class="field">
+                        <input type="password" name="password" id="password" autocomplete="off"
+                          placeholder="Password" />
+                      </div>
+                      <div class="field btn">
+                        <div class="btn-layer"></div>
+                        <input type="submit" value="Login" />
+                      </div>
+                      <!-- <a class="btn btn-lg btn-success" href="/google">Continue With Google</a> -->
+                      <div class="signup-link">New Here ? <a href="/signup">Register Now</a></div>
+                      <!-- added a new button for redirecting to forgot password page  -->
+                      <div class="pass-link">
+                        <a href="mailto:yellyurlshortener@gmail.com">Forgot Password</a>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+    </div>
+  </div>
+  <div class="container-fluid">
+    <div class="row text-center">
+      <div class="col-12">
+        <p>Contact us <a href="mailto:yellyurlshortener@gmail.com" style="color: white; text-decoration: underline;">Yelly
+            Support</a></p>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

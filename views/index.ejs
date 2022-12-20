@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- Font  -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Recursive:wght@500&display=swap" rel="stylesheet" />
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous" />
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css" />
+
+  <title>Yelly Shortener</title>
+  <link rel="icon" type="image/x-icon" href="/static/images/logo.png">
+</head>
+<style>
+  body {
+    font-family: "Recursive", sans-serif;
+    font-size: larger;
+    background-image: url('/static/images/url-back.png');
+    background-size: 300px;
+  }
+
+  .bi {
+    color: #554DDB;
+  }
+
+  nav {
+    background-color: #554DDB;
+  }
+
+  .nav-link {
+    color: rgba(255, 255, 255, 0.639) !important;
+  }
+
+  .nav-link:hover {
+    color: white !important;
+  }
+
+  #startCreating {
+    border: 1px solid #554DDB;
+    color: black;
+  }
+
+  #startCreating:hover {
+    background-color: #554DDB;
+    color: white;
+  }
+
+  .card {
+    box-shadow: 0px 4px 10px 3px rgba(0, 0, 0, 0.25);
+  }
+</style>
+
+<body>
+  <!-- navbar  -->
+  <nav class="navbar navbar-expand-lg navbar-light p-2">
+    <div class="container">
+      <a class="navbar-brand p-0" href="#">
+        <img style="border-radius: 25%;" src="/static/images/logo-white.png" width="80" alt="Logo" />
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" style="color: white !important;" aria-current="page" href="#">Home</a>
+          </li>
+          <% if(logged){ %>
+            <li class="nav-item">
+              <a class="nav-link" href="/logout">Logout</a>
+            </li>
+            <% }else{ %>
+              <li class="nav-item">
+                <a class="nav-link" href="/login">Login</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/signup">Signup</a>
+              </li>
+              <% } %>
+                <li class="nav-item">
+                  <a class="nav-link" href="#features">Features</a>
+                </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!-- navbar end  -->
+
+  <div class="container py-3" id="linkBanner">
+    <div class="row justify-content-center align-items-center">
+      <div class="col-10 col-md-6 text-center">
+        <% if(typeof err !='undefined' ){ %>
+          <% if(err){ %>
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+              <strong>ERROR </strong>
+              Can't find the Short Url .
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+
+            <% } %>
+              <% } %>
+
+                <img src="/static/images/link_shorter.png" class="img-fluid" alt="Banner" />
+                <h1 class="mt-4">URL SHORTENER</h1>
+                <h2>Here you have full control over your links!</h2>
+
+                <a class="btn btn-lg mt-3" id="startCreating" href="/dashboard">Start Creating Now</a>
+      </div>
+    </div>
+  </div>
+
+  <div id="features" class="container p-5">
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 justify-content-center g-3">
+      <div class="col">
+        <div class="card text-center h-100">
+          <i style="font-size: 3em;" class="bi bi-megaphone mt-2"></i>
+          <div class="card-body">
+            <h3 class="card-title p-2">URL Shortener</h3>
+            <p class="card-text px-3">Yelly is a URL Shortener and Link Management Platform with a lot of features that
+              will help you handle all your links in an intuitive way and reveal the potential of your links.</p>
+
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card text-center h-100">
+          <i style="font-size: 3em;" class="bi bi-link-45deg mt-2"></i>
+          <div class="card-body">
+            <h3 class="card-title p-2">Link in Bio</h3>
+            <p class="card-text px-3">Yelly is a tool for creating your own link in bio microsites that will allow you
+              to reach your audience.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card text-center h-100">
+          <i style="font-size: 3em;" class="bi bi-bar-chart-line mt-2"></i>
+          <div class="card-body">
+            <h3 class="card-title p-2">Link Analytics</h3>
+            <p class="card-text px-3">Yelly is an advanced Link Analytics platform that tracks clicks on short links and
+              measures the effectiveness of clicks. Extensive statistics of clicks on short links.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <%- include('./partials/footer.ejs'); %>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+      crossorigin="anonymous"></script>
+</body>
+
+</html>

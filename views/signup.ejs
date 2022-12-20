@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- Font  -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Recursive:wght@500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./styles/login.css">
+    <title>Yelly Signup</title>
+    <link rel="icon" type="image/x-icon" href="/static/images/logo.png">
+</head>
+
+<body>
+    <div class="container">
+        <div style="margin: 0 auto;" class="col-12 col-md-6 col-lg-5 p-5 customborder">
+
+            <% if(typeof err !='undefined' ){ %>
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <strong> Error </strong>
+                    <%= err %>.
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                <% } %>
+                    <div class="wrapper">
+                        <div class="title-text">
+                            <div class="title login">Signup Form</div>
+                            <div class="title signup">Signup Form</div>
+                        </div>
+                        <div class="form-container">
+                            <div class="slide-controls">
+                                <input type="radio" name="slide" id="login">
+                                <input type="radio" name="slide" id="signup" checked>
+                                <label for="login" class="slide login"><a href="/login">Login</a></label>
+                                <label for="signup" class="slide signup">Signup</label>
+                                <div class="slider-tab"></div>
+                            </div>
+                            <div class="form-inner">
+                                <form action="/signup" method="POST" class="signup">
+                                    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                                    <div class="field">
+                                        <input type="email" name="email" id="email" autocomplete="off"
+                                            placeholder="Email Adress" required>
+                                    </div>
+                                    <div class="field">
+                                        <input type="password" name="password" id="password" autocomplete="off"
+                                            placeholder="Password">
+                                    </div>
+                                    <div class="field">
+                                        <input type="password" name="confirmpassword" id="confirmpassword"
+                                            autocomplete="off" placeholder="Confirm Password">
+                                    </div>
+                                    <div class="field btn">
+                                        <div class="btn-layer"></div>
+                                        <input type="submit" class="btn btn-lg btn-outline-primary" value="Register">
+                                    </div>
+                                    <!-- <a class="btn btn-lg btn-success" href="">Continue With Google</a> -->
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row text-center">
+            <div class="col-12">
+                <p>Contact us <a href="mailto:yellyurlshortener@gmail.com"
+                        style="color: white; text-decoration: underline;">Yelly Support</a></p>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+        crossorigin="anonymous"></script>
+
+</body>
+
+</html>
