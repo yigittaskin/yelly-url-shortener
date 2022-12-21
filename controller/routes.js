@@ -71,11 +71,20 @@ router.post('/signup', (req, res) => {
 });
 
 router.post('/login', (req, res, next) => {
-    passport.authenticate('local', {
-        failureRedirect: '/login',
-        successRedirect: '/dashboard',
-        failureFlash: true,
-    })(req, res, next);
+    if (req.body.email == 'admin@gmail.com') {
+        passport.authenticate('local', {
+            failureRedirect: '/login',
+            successRedirect: '/admin',
+            failureFlash: true,
+        })(req, res, next);
+    }
+    else {
+        passport.authenticate('local', {
+            failureRedirect: '/login',
+            successRedirect: '/dashboard',
+            failureFlash: true,
+        })(req, res, next);
+    }
 });
 
 router.get('/logout', (req, res) => {
@@ -113,6 +122,17 @@ router.get('/dashboard', checkAuth, (req, res) => {
         }
         res.render('dashboard', { verified: req.user.isVerified, logged: true, csrfToken: req.csrfToken(), urls: data, username: req.user.email, totalVisits: visits, totalLinks: data.length });
     }).sort({ $natural: -1 });
+});
+
+router.get('/admin', checkAuth, (req, res) => {
+    urls.find((err, data) => {
+        var visits = 0
+        if (err) throw err;
+        for (let i = 0; i < data.length; i++) {
+            visits += data[i].visits
+        }
+        res.render('admin', { verified: req.user.isVerified, logged: true, csrfToken: req.csrfToken(), urls: data.sort((a, b) => b.visits - a.visits), username: req.user.email, totalVisits: visits, totalLinks: data.length });
+    });
 });
 
 router.get('/urls/api', (req, res) => {

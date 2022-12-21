@@ -76,7 +76,6 @@
             <%= username %>
           </button>
           <div class="dropdown-menu">
-            <a class="dropdown-item" style="color: #554DDB;" href="#edit">Edit Account</a>
             <a class="dropdown-item" style="color: #554DDB;" href="/logout">Logout</a>
           </div>
         </div>
@@ -120,34 +119,10 @@
       </div>
     </div>
     <!-- TOTAL END -->
-
-    <div class="row">
-      <div class="col-12 col-md-12 col-lg-12 p-2 mx-auto">
-        <div class="container px-5">
-          <div class="d-flex justify-content-center flex-column px-5">
-            <form action="/create" method="POST" class="form-inline">
-              <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
-              <div class="col-md-12 text-center">
-                <input required placeholder="Url.." type="url" name="original" id="url" class="form-control"
-                  style="box-shadow: 4px 4px 4px #554DDB; width: 60%">
-              </div>
-              <div class="text-center col-md-12">
-                <input type="text" class="form-control mt-4" name="short" id="short" autocomplete="off"
-                  placeholder="short" style="box-shadow: 4px 4px 4px #554DDB; width: 60%;" maxlength="10" />
-              </div>
-              <div class="col-md-12 text-center">
-                <input type="submit" class="btn text-white mt-4 "
-                  style="background: #554DDB; border-radius: 8px; width: 60%;" value="Create Url" />
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
   </div>
 
   <div class="container p-5">
-    <h2 class="text-center">Your Urls</h2>
+    <h2 class="text-center">All Urls (much-to-lower)</h2>
     <% if(urls.length !=0){ %>
       <% urls.forEach((url)=> { %>
         <div class="col-md-12 mt-4 bg-white justify-content-center"
@@ -201,37 +176,8 @@
         </div>
         <% }) %>
           <% }else{ %>
-            <h2 class="text-center mt-3">You Didn't Create URL!</h2>
+            <h2 class="text-center mt-3">No URL</h2>
             <% } %>
-  </div>
-
-
-  <div class="container mt-5">
-    <div class="col-12 col-md-12 col-lg-12 p-2 mx-auto">
-      <hr>
-      <div class="container px-5 pb-3">
-        <h2 class="text-center">Change Profile Information</h2>
-        <div id="edit" class="d-flex justify-content-center flex-column px-5">
-          <form action="/edit" method="POST" class="form-inline">
-            <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
-            <div class="col-md-4 text-center">
-              <input required placeholder="Enter Your Email Adress" type="email" name="email" id="email"
-                class="form-control mt-4" style="box-shadow: 4px 4px 4px #554DDB; width: 100%;">
-            </div>
-            <div class="text-center col-md-4">
-              <input required type="text" class="form-control mt-4" name="password" id="password" autocomplete="off"
-                placeholder="Enter New Password" style="box-shadow: 4px 4px 4px #554DDB; width: 100%;" maxlength="10" />
-            </div>
-            <div class="col-md-4 text-center">
-              <input type="submit" class="btn text-white mt-4 "
-                style="background: #554DDB; border-radius: 8px; width: 100%;box-shadow: 4px 4px 4px black;"
-                value="Change Profile!" />
-            </div>
-          </form>
-        </div>
-      </div>
-      <hr>
-    </div>
   </div>
 
   <%- include('./partials/footer.ejs'); %>
