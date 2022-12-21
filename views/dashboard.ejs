@@ -177,7 +177,7 @@
             <div class="col-md-12 mt-3">
               <div class="d-flex justify-content-between">
                 <h6>
-                  <a class="text-dark" target="_blank" href="<%= url['slug'] %>">
+                  <a class="text-dark urlSlug" target="_blank" href="<%= url['slug'] %>">
                     <%= url['slug'] %>
                   </a>
                 </h6>
@@ -253,6 +253,16 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"
       integrity="sha512-d9xgZrVZpmmQlfonhQUvTR7lMPtO7NkZMkA0ABN3PHCbKA5nqylQ/yWlFAyY6hYgdF1Qh6nYiuADWwKB4C2WSw=="
       crossorigin="anonymous"></script>
+      <script>
+        var urlSlug = document.querySelectorAll('.urlSlug');
+        for (let i = 0; i < urlSlug.length; i++) {
+          urlSlug[i].addEventListener('click', () =>{
+          setTimeout(() => {
+            window.location.reload();
+          }, 300);
+        })
+        }
+      </script>
 </body>
 
 </html>
