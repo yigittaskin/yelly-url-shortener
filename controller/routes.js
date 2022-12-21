@@ -99,6 +99,17 @@ router.get('/dashboard', checkAuth, (req, res) => {
         var visits = 0
         for (let i = 0; i < data.length; i++) {
             visits += data[i].visits
+            var date = new Date();
+            var checkDate = date - data[i].created;
+            const day60 = 5184000000; //30 gün = 2592000000 milisaniye - 1 dakika 60000 milisaniye
+            if (checkDate > day60) {
+                console.log(data[i].id)
+                urls.find({ _id: data[i].id }, (err, data) => {
+                    urls.deleteOne({ _id: data[i].id }).then(() => {
+                        console.log('Silindi')
+                    })
+                });
+            }
         }
         res.render('dashboard', { verified: req.user.isVerified, logged: true, csrfToken: req.csrfToken(), urls: data, username: req.user.email, totalVisits: visits, totalLinks: data.length });
     }).sort({ $natural: -1 });
