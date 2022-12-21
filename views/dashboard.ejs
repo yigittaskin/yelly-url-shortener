@@ -15,12 +15,9 @@
     integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css">
-
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.css"
     integrity="sha512-/zs32ZEJh+/EO2N1b0PEdoA10JkdC3zJ8L5FTiQu82LR9S/rOQNfQN7U59U9BC12swNeRAz3HSzIL2vpp4fv3w=="
     crossorigin="anonymous" />
-
-
   <title> Dashboard | Yelly </title>
   <link rel="icon" type="image/x-icon" href="/static/images/logo.png">
 </head>
@@ -66,9 +63,7 @@
       <div class="col-md-2 d-flex">
         <img id="logo" src="/static/images/logo.png" alt="Logo" width="70">
       </div>
-      <div class="col-md-7">
-
-      </div>
+      <div class="col-md-7"></div>
       <div class="col-md-3 d-flex align-items-center justify-content-center">
         <div class="dropdown">
           <button class="btn btn-secondary dropdown-toggle p-2"
@@ -86,7 +81,6 @@
   </div>
 
   <!-- navbar end  -->
-
 
   <div class="container">
 
@@ -124,9 +118,7 @@
     <!-- TOTAL END -->
 
     <div class="row">
-
       <div class="col-12 col-md-12 col-lg-12 p-2 mx-auto">
-
         <div class="container px-5">
           <div class="d-flex justify-content-center flex-column px-5">
             <form action="/create" method="POST" class="form-inline">
@@ -147,21 +139,11 @@
           </div>
         </div>
       </div>
-
     </div>
-
-
-
   </div>
 
-
-  <!-- / -->
-
-
   <div class="container p-5">
-
     <h2 class="text-center">Your Urls</h2>
-
     <% if(urls.length !=0){ %>
       <% urls.forEach((url)=> { %>
         <div class="col-md-12 mt-4 bg-white justify-content-center"
@@ -180,7 +162,8 @@
                   <a class="text-dark urlSlug shortURL" target="_blank" href="<%= url['slug'] %>">
                     <%= url['slug'] %>
                   </a>
-                  <button class="copyIcon" style="background: none; border: none; color: #554DDB;"><i class="fa-solid fa-copy"></i></button>
+                  <button class="copyIcon" style="background: none; border: none; color: #554DDB;"><i
+                      class="fa-solid fa-copy"></i></button>
                 </h6>
                 <h6 class="mb-4">Created:
                   <% const monthNames=["January", "February" , "March" , "April" , "May" , "June" , "July" , "August"
@@ -222,7 +205,6 @@
 
     <div class="container mt-5">
       <div class="col-12 col-md-12 col-lg-12 p-2 mx-auto">
-
         <div class="container px-5">
           <div class="d-flex justify-content-center flex-column px-5">
             <form action="/edit" method="POST" class="form-inline">
@@ -251,7 +233,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
       crossorigin="anonymous"></script>
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"
       integrity="sha512-d9xgZrVZpmmQlfonhQUvTR7lMPtO7NkZMkA0ABN3PHCbKA5nqylQ/yWlFAyY6hYgdF1Qh6nYiuADWwKB4C2WSw=="
       crossorigin="anonymous"></script>
@@ -265,17 +246,16 @@
         })
       }
 
-
-        var copyText = document.querySelectorAll(".shortURL");
-        var copyIcon = document.querySelectorAll(".copyIcon");
-        console.log(copyText.length);
-        for (let a = 0; a < copyText.length; a++) {
-          copyIcon[a].addEventListener('click', () => {
+      var copyText = document.querySelectorAll(".shortURL");
+      var copyIcon = document.querySelectorAll(".copyIcon");
+      console.log(copyText.length);
+      for (let a = 0; a < copyText.length; a++) {
+        copyIcon[a].addEventListener('click', () => {
           var text = copyText[a].innerHTML;
           console.log(text)
           navigator.clipboard.writeText('http://localhost:8000/' + copyText[a].innerHTML);
-          })
-        }
+        })
+      }
     </script>
 </body>
 

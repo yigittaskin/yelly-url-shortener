@@ -24,9 +24,6 @@
         </div>
         <% } %>
 
-          <!-- if someone tried to access a protected route  -->
-          <!-- this flash message will show them to login first  -->
-
           <% if( error_messages !="" ){ %>
             <div style="background-color: red; color: white; padding: 10px; border-radius: 10px; margin-bottom: 10px;">
               <strong> Error </strong>
@@ -34,7 +31,6 @@
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
             <% } %>
-
               <div class="wrapper">
                 <div class="title-text">
                   <div class="title login">Login Form</div>
@@ -78,7 +74,8 @@
   <div class="container-fluid">
     <div class="row text-center">
       <div class="col-12">
-        <p>Contact us <a href="mailto:yellyurlshortener@gmail.com" style="color: white; text-decoration: underline;">Yelly
+        <p>Contact us <a href="mailto:yellyurlshortener@gmail.com"
+            style="color: white; text-decoration: underline;">Yelly
             Support</a></p>
       </div>
     </div>
