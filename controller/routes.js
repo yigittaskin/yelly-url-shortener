@@ -8,6 +8,7 @@ require('./passportLocal')(passport);
 require('./googleAuth')(passport);
 const userRoutes = require('./accountRoutes');
 const shortid = require('shortid');
+const alert = require('alert-node')
 
 function checkAuth(req, res, next) {
     if (req.isAuthenticated()) {
@@ -149,32 +150,45 @@ router.get('/users/api', (req, res) => {
 
 router.post('/create', checkAuth, (req, res) => {
     const { original, short } = req.body;
-    if (!short) {
-        urls.findOne({ slug: short }, (err, data) => {
-            urls({
-                originalUrl: original,
-                slug: shortid.generate(),
-                owned: req.user.email,
-            }).save((err) => {
-                res.redirect('/dashboard');
-            });
-        })
-    } else {
-        urls.findOne({ slug: short }, (err, data) => {
-            if (err) throw err;
-            if (data) {
-                res.render('dashboard', { verified: req.user.isVerified, logged: true, csrfToken: req.csrfToken(), err: "Try Different Short Url, This exists !" });
-            } else {
+    urls.find((error, veri) => {
+        var checkSlug = true;
+        for (let i = 0; i < veri.length; i++) {
+            if (short == veri[i].slug) {
+                checkSlug = false;
+            }
+        }
+        if (!short) {
+            urls.findOne({ slug: short }, (err, data) => {
                 urls({
                     originalUrl: original,
-                    slug: short,
+                    slug: shortid.generate(),
                     owned: req.user.email,
                 }).save((err) => {
                     res.redirect('/dashboard');
                 });
-            }
-        })
-    }
+            })
+        }
+        else if (!checkSlug) {
+            alert('The Short Url You Entered Has Already Been Used. Try Different Short Url, This exists.');
+            res.redirect('/dashboard');
+        }
+        else {
+            urls.findOne({ slug: short }, (err, data) => {
+                if (err) throw err;
+                if (data) {
+                    res.render('dashboard', { verified: req.user.isVerified, logged: true, csrfToken: req.csrfToken(), err: "Try Different Short Url, This exists !" });
+                } else {
+                    urls({
+                        originalUrl: original,
+                        slug: short,
+                        owned: req.user.email,
+                    }).save((err) => {
+                        res.redirect('/dashboard');
+                    });
+                }
+            })
+        }
+    })
 });
 
 router.use(userRoutes);
