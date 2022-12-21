@@ -227,6 +227,14 @@ router.post('/dashboard/:id?', (req, res) => {
     });
 })
 
+router.post('/admin/:id?', (req, res) => {
+    urls.find({ _id: req.params.id }, (err, data) => {
+        urls.deleteOne({ _id: req.params.id }).then(() => {
+            res.redirect('/admin');
+        })
+    });
+})
+
 router.post('/edit', checkAuth, function (req, res, next) {
     bcryptjs.genSalt(12, (err, salt) => {
         if (err) throw err;
