@@ -168,7 +168,7 @@ router.post('/create', checkAuth, (req, res) => {
                 });
             })
         }
-        else if (!checkSlug) {
+        else if (!checkSlug || short == 'dashboard' || short == 'login' || short == 'signup' || short == 'admin' || short == 'create' || short == 'edit' || short == 'logout') {
             alert('The Short Url You Entered Has Already Been Used. Try Different Short Url, This exists.');
             res.redirect('/dashboard');
         }
@@ -223,6 +223,14 @@ router.post('/dashboard/:id?', (req, res) => {
     urls.find({ _id: req.params.id }, (err, data) => {
         urls.deleteOne({ _id: req.params.id }).then(() => {
             res.redirect('/dashboard');
+        })
+    });
+})
+
+router.post('/admin/:id?', (req, res) => {
+    urls.find({ _id: req.params.id }, (err, data) => {
+        urls.deleteOne({ _id: req.params.id }).then(() => {
+            res.redirect('/admin');
         })
     });
 })
