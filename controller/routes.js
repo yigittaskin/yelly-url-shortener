@@ -168,7 +168,7 @@ router.post('/create', checkAuth, (req, res) => {
                 });
             })
         }
-        else if (!checkSlug) {
+        else if (!checkSlug || short == 'dashboard' || short == 'login' || short == 'signup' || short == 'admin' || short == 'create' || short == 'edit' || short == 'logout') {
             alert('The Short Url You Entered Has Already Been Used. Try Different Short Url, This exists.');
             res.redirect('/dashboard');
         }
