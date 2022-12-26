@@ -63,12 +63,11 @@
   <!-- navbar  -->
 
   <div class="container-fluid d-flex align-items-center bg-white" id="url_header">
-    <div class="row w-100">
-      <div class="col-md-2 d-flex">
+    <div class="w-100">
+      <div class="float-left">
         <img id="logo" src="/static/images/logo.png" alt="Logo" width="70">
       </div>
-      <div class="col-md-7"></div>
-      <div class="col-md-3 d-flex align-items-center justify-content-center">
+      <div class="float-right d-flex align-items-center justify-content-center mt-3 mr-4">
         <div class="dropdown">
           <button class="btn btn-secondary dropdown-toggle p-2"
             style="background-color: #554DDB !important; color: white !important;; border-radius: 10px !important;"
@@ -89,7 +88,7 @@
   <div class="container">
 
     <!-- TOTAL -->
-    <div class="col-md-12 d-flex">
+    <div class="col-md-12 d-flex row">
       <div class="col-md-6" style="padding: 100px;">
         <div class="allLink bg-white"
           style="min-height: 150px; padding-top: 30px; padding-bottom: 10px; box-shadow: 0px 4px 10px 3px rgba(0, 0, 0, 0.25); border-radius: 15px;">
@@ -104,7 +103,7 @@
           </div>
         </div>
       </div>
-      <div class="col-md-6" style="padding: 100px; margin-left: -50px;">
+      <div class="col-md-6" style="padding: 100px;">
         <div class="allClicks bg-white"
           style="min-height: 150px; padding-top: 30px; padding-bottom: 10px; box-shadow: 0px 4px 10px 3px rgba(0, 0, 0, 0.25); border-radius: 15px;">
           <div class="title">
@@ -129,15 +128,15 @@
               <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
               <div class="col-md-12 text-center">
                 <input required placeholder="Url.." type="url" name="original" id="url" class="form-control"
-                  style="box-shadow: 4px 4px 4px #554DDB; width: 60%">
+                  style="box-shadow: 4px 4px 4px #554DDB; width: 75%">
               </div>
               <div class="text-center col-md-12">
                 <input type="text" class="form-control mt-4" name="short" id="short" autocomplete="off"
-                  placeholder="short" style="box-shadow: 4px 4px 4px #554DDB; width: 60%;" maxlength="10" />
+                  placeholder="short" style="box-shadow: 4px 4px 4px #554DDB; width: 75%;" maxlength="10" />
               </div>
               <div class="col-md-12 text-center">
                 <input type="submit" class="btn text-white mt-4 "
-                  style="background: #554DDB; border-radius: 8px; width: 60%;" value="Create Url" />
+                  style="background: #554DDB; border-radius: 8px; width: 75%;" value="Create Url" />
               </div>
             </form>
           </div>
