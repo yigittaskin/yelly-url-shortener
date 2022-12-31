@@ -126,13 +126,15 @@ router.get('/dashboard', checkAuth, (req, res) => {
 });
 
 router.get('/admin', checkAuth, (req, res) => {
-    urls.find((err, data) => {
-        var visits = 0
-        if (err) throw err;
-        for (let i = 0; i < data.length; i++) {
-            visits += data[i].visits
-        }
-        res.render('admin', { verified: req.user.isVerified, logged: true, csrfToken: req.csrfToken(), urls: data.sort((a, b) => b.visits - a.visits), username: req.user.email, totalVisits: visits, totalLinks: data.length });
+    user.find((err, veri) => {
+        urls.find((err, data) => {
+            var visits = 0
+            if (err) throw err;
+            for (let i = 0; i < data.length; i++) {
+                visits += data[i].visits
+            }
+            res.render('admin', { verified: req.user.isVerified, logged: true, csrfToken: req.csrfToken(), urls: data.sort((a, b) => b.visits - a.visits), user: veri, username: req.user.email, totalUser: veri.length, totalVisits: visits, totalLinks: data.length });
+        })
     });
 });
 
