@@ -5,7 +5,6 @@ const urls = require('../model/url');
 const bcryptjs = require('bcryptjs');
 const passport = require('passport');
 require('./passportLocal')(passport);
-require('./googleAuth')(passport);
 const userRoutes = require('./accountRoutes');
 const shortid = require('shortid');
 const alert = require('alert-node')
@@ -29,29 +28,21 @@ router.get('/signup', (req, res) => {
 });
 
 router.post('/signup', (req, res) => {
-    // get all the values 
     const { email, password, confirmpassword } = req.body;
-    // check if the are empty 
     if (!email || !password || !confirmpassword) {
         res.render("signup", { err: "All Fields Required !", csrfToken: req.csrfToken() });
     } else if (password != confirmpassword) {
         res.render("signup", { err: "Password Don't Match !", csrfToken: req.csrfToken() });
     } else {
-        // validate email and username and password 
-        // skipping validation
-        // check if a user exists
         user.findOne({ email: email }, function (err, data) {
             if (err) throw err;
             if (data) {
                 res.render("signup", { err: "User Exists, Try Logging In !", csrfToken: req.csrfToken() });
             } else {
-                // generate a salt
                 bcryptjs.genSalt(12, (err, salt) => {
                     if (err) throw err;
-                    // hash the password
                     bcryptjs.hash(password, salt, (err, hash) => {
                         if (err) throw err;
-                        // save user in db
                         user({
                             email: email,
                             password: hash,
@@ -59,9 +50,6 @@ router.post('/signup', (req, res) => {
                             provider: 'email',
                         }).save((err, data) => {
                             if (err) throw err;
-                            // login the user
-                            // use req.login
-                            // redirect , if you don't want to login
                             res.redirect('/login');
                         });
                     })
