@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/43a0e21f-acd6-461d-9d29-187f30bec1df/resourceGroups/appsvc_linux_centralus/providers/Microsoft.Web/sites/yellyurl",
+    "appService.deploySubpath": "."
+}
